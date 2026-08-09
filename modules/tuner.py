@@ -20,21 +20,24 @@ def build_model(
 ) -> tf.keras.Model:
     # Membuat arsitektur Keras model dengan hyperparameter
     input_features = []
+    encoded_features = []
 
     # Input layer untuk fitur numerik
     for feature in NUMERICAL_FEATURES:
-        input_features.append(
-            tf.keras.Input(shape=(1,), name=transformed_name(feature), dtype=tf.float32)
+        inp = tf.keras.Input(
+            shape=(1,), name=transformed_name(feature), dtype=tf.float32
         )
+        input_features.append(inp)
+        encoded_features.append(inp)
 
     # Input layer untuk fitur kategorikal
     for feature in CATEGORICAL_FEATURES:
-        input_features.append(
-            tf.keras.Input(shape=(1,), name=transformed_name(feature), dtype=tf.int64)
-        )
+        inp = tf.keras.Input(shape=(1,), name=transformed_name(feature), dtype=tf.int64)
+        input_features.append(inp)
+        encoded_features.append(tf.cast(inp, tf.float32))
 
     # Penggabungan seluruh input
-    concat_inputs = tf.keras.layers.concatenate(input_features)
+    concat_inputs = tf.keras.layers.concatenate(encoded_features)
     x = concat_inputs
 
     # Dynamic hidden layers
