@@ -1,10 +1,13 @@
 {
   "name": "Machine Learning Pipeline",
-  "image": "mcr.microsoft.com/devcontainers/python:3.10",
+  "image": "mcr.microsoft.com/devcontainers/python:3.10-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+  },
   "customizations": {
     "vscode": {
       "extensions": ["ms-python.python", "ms-toolsai.jupyter"]
     }
   },
-  "postCreateCommand": "rm -rf venv && python -m venv venv && ./venv/bin/pip install -r requirements.txt"
+  "postCreateCommand": "rm -rf venv && python -m venv venv && ./venv/bin/pip install --use-deprecated=legacy-resolver -r requirements.txt"
 }
