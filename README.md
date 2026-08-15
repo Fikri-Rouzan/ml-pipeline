@@ -1,13 +1,1 @@
-# Submission 1: Machine Learning Pipeline - Heart Failure Prediction
-Nama: Muhammad Fikri Rouzan Ash Shidik
-Username dicoding: fikri_rouzan
-
-| | Deskripsi |
-| ----------- | ----------- |
-| **Dataset** | [Heart Failure Prediction Dataset](https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction) |
-| **Masalah** | Penyakit kardiovaskular merupakan penyebab kematian utama secara global. Deteksi dini risiko gagal jantung sangat krusial agar tindakan medis pencegahan dapat dilakukan lebih cepat dan tepat. |
-| **Solusi machine learning** | Membangun end-to-end Machine Learning Pipeline terotomatisasi menggunakan TensorFlow Extended (TFX) untuk mengklasifikasikan risiko penyakit jantung (Klasifikasi Biner: 0 = Normal, 1 = Heart Disease). Pipeline ini mencakup otomatisasi dari data ingestion, validation, feature engineering, hyperparameter tuning, training, evaluation, hingga model deployment dengan TensorFlow Serving. |
-| **Metode pengolahan** | Prapemrosesan data diisolasi menggunakan komponen `Transform` (`modules/transform.py`):<br>- **Fitur Numerik (`Age`, `RestingBP`, `Cholesterol`, `FastingBS`, `MaxHR`, `Oldpeak`):** Normalisasi skala menggunakan Z-score (`tft.scale_to_z_score`).<br>- **Fitur Kategorikal (`Sex`, `ChestPainType`, `RestingECG`, `ExerciseAngina`, `ST_Slope`):** Enkoding menjadi vocabulary index (`tft.compute_and_apply_vocabulary`). |
-| **Arsitektur model** | Deep Learning Sequential Model berbasis Keras Functional API yang dioptimalkan dengan `KerasTuner` (`modules/tuner.py` & `modules/trainer.py`):<br>- **Input Layer:** Menerima input tensor fitur numerik dan kategorikal (dengan casting `float32`).<br>- **Hidden Layers:** Multi-layer `Dense` beraktivasi ReLU, dilengkapi `BatchNormalization` untuk kestabilan pelatihan dan `Dropout` untuk mencegah overfitting.<br>- **Output Layer:** Dense 1 unit dengan fungsi aktivasi `Sigmoid` untuk output probabilitas klasifikasi biner. |
-| **Metrik evaluasi** | `BinaryAccuracy`, `AUC` (Area Under ROC Curve), `Precision`, dan `Recall`. Komponen `Evaluator` dipasang dengan syarat ambang batas (metric threshold) `BinaryAccuracy` minimal **0.60 (60%)** dan harus lebih baik dari baseline model agar model dinyatakan blessed. |
-| **Performa model** | Model akhir yang dilatih menggunakan hyperparameter terbaik (`learning_rate: 0.001`, `num_layers: 1`, `units_0: 96`) berhasil meraih performa pada data validasi:<br>- **Validation Accuracy:** 84.06%<br>- **Validation AUC:** 0.9099<br>- **Validation Precision:** 89.20%<br>- **Validation Recall:** 83.07%<br>- **Validation Loss:** 0.3992<br><br>Model berhasil lolos evaluasi (`blessed`), di-ekspor oleh `Pusher`, serta sukses diuji melakukan prediksi REST API via TensorFlow Serving (Status Code 200 OK). |
+# Machine Learning (ML) Pipeline
