@@ -21,3 +21,14 @@
 ---
 
 ## ⚙️ Petunjuk Pengaturan
+
+1. **Prasyarat**
+   - Python 3.10.
+   - Git terinstal di komputer.
+
+2. **Clone Repositori**
+
+```bash
+git clone https://github.com/Fikri-Rouzan/ml-pipeline.git
+cd ml-pipeline
+```
